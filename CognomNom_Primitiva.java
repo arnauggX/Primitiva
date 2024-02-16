@@ -64,6 +64,7 @@ public class CognomNom_Primitiva {
     private static int[] calcularCombinacioGuanyadora(){
         int[] combinacio = null;
 
+
         //TODO: Fer el codi del mètode
 
         return combinacio;
@@ -83,6 +84,7 @@ public class CognomNom_Primitiva {
 
         //Comprobar encerts a la combinació
         //TODO: Fer el codi del mètode
+
 
         //Comprobar reintegrament
         //TODO: Fer el codi del mètode
