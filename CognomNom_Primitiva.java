@@ -25,7 +25,7 @@ public class CognomNom_Primitiva {
         System.out.println("***** PRIMITIVA ******");
 
         int[] aposta = introduirAposta();
-        int[] combinacioGuanyadora = calcularCombinacioGuanyadora();
+        int[] combinacioGuanyadora = calcularCombinacioGuanyadora(new int[7]);
         int premi;
 
         if (combinacioGuanyadora != null) {
@@ -61,13 +61,26 @@ public class CognomNom_Primitiva {
      * @return //TODO: Completar
      * @since 1.0
      */
-    private static int[] calcularCombinacioGuanyadora(){
-        int[] combinacio = null;
+    private static int[] calcularCombinacioGuanyadora(int array []){
+        int[] combinacio1 = null;
+        int[] combinacio2 = null;
 
+        for(int i=0;i<array.length;i++){
+            boolean encontrado = false;
+            int ale=(int)(Math.random()*49)+1;
+            for (int j=0;j<i ;j++){
+                if(array[j]==ale){
+                    encontrado=true;
+                }
+            }
+            if(!encontrado){
+                array[i]=ale;
+            }else{
+                i--;
+            }
+        }
 
-        //TODO: Fer el codi del mètode
-
-        return combinacio;
+        return array;
     }
 
     /**
