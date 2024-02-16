@@ -1,3 +1,4 @@
+import java.util.AbstractList;
 import java.util.Scanner;
 
 /**
@@ -7,7 +8,11 @@ import java.util.Scanner;
  * @date //TODO: data
  */
 //TODO: Fer refractor per canviar el nom de la classe
-public class CognomNom_Primitiva {
+public class Primitiva {
+
+    public static Scanner scanner = new Scanner(System.in);
+    private static AbstractList<Object> numerosUsados;
+
     /**
      * Mètode main executable
      * @param args
@@ -49,14 +54,52 @@ public class CognomNom_Primitiva {
      * @return //TODO: Completar
      * @since 1.0
      */
-    private static int[] introduirAposta(){
-        System.out.println("Introdueix la teva aposta: ");
-        int[] aposta = null;
+    private static int[] introduirAposta() {
+        System.out.println("Introdueix la teva aposta:");
+        int[] aposta = new int[7];
 
-        //TODO: Fer el codi del mètode
+
+        //Primeros 6 numeros generados
+        for (int i = 0; i < 6; i++) {
+            int numero;
+            do {
+                System.out.print("Introdueix el número: ");
+                while (!scanner.hasNextInt()) {
+                    System.out.println("Si us plau, introdueix un número enter vàlid.");
+                    scanner.next();
+                }
+                numero = scanner.nextInt();
+                if (numero < 1 || numero > 49) {
+                    System.out.println("El número ha d'estar entre 1 i 49. Torna-ho a provar.");
+                } else if (numerosUsados.contains(numero)) {
+                    System.out.println("Aquest número ja ha estat introduït. Torna-ho a provar.");
+                }
+            } while (numero < 1 || numero > 49 || numerosUsados.contains(numero));
+
+            aposta[i] = numero;
+            numerosUsados.add(numero);
+        }
+
+        //Segundo numero generado
+        System.out.print("Introdueix un número enter entre 0 i 9: ");
+        int otronumero;
+        do {
+            while (!scanner.hasNextInt()) {
+                System.out.println("Si us plau, introdueix un número enter vàlid.");
+                scanner.next();
+            }
+            otronumero = scanner.nextInt();
+            if (otronumero < 0 || otronumero > 9) {
+                System.out.println("El número ha d'estar entre 0 i 9. Torna-ho a provar.");
+            }
+        } while (otronumero < 0 || otronumero > 9);
+
+        aposta[6] = otronumero;
 
         return aposta;
     }
+
+
 
     /**
      * //TODO: Completar
