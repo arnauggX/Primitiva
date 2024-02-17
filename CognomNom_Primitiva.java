@@ -23,28 +23,43 @@ public class CognomNom_Primitiva {
      * @since 1.0
      */
     private static void menuPrincipal(){
-        System.out.println("***** PRIMITIVA ******");
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
 
-        int[] aposta = introduirAposta();
-        int[] combinacioGuanyadora = calcularCombinacioGuanyadora();
-        int premi;
+        do {
+            System.out.println("***** Loteria ******");
+            System.out.println("1. Hacer apuesta");
+            System.out.println("2. Girar el bombo");
+            System.out.println("3. Juego nuevo");
+            System.out.println("4. Salir");
 
-        if (combinacioGuanyadora != null) {
-            System.out.println("La combinació ganadora és: ");
+            opcion = llegirInt("Seleccione una opción: ", 1, 4);
 
-            for (int i = 0; i < combinacioGuanyadora.length - 1; i++) {
-                System.out.print(combinacioGuanyadora[i] + " ");
+            switch (opcion) {
+                case 1:
+                    introduirAposta();
+                    break;
+                case 2:
+                    int[] combinacion = calcularCombinacioGuanyadora();
+                    System.out.println("La combinación ganadora es: ");
+                    for (int i = 0; i < combinacion.length - 1; i++) {
+                        System.out.print(combinacion[i] + " ");
+                    }
+                    System.out.println("Reintegrament " + combinacion[combinacion.length - 1]);
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+                    System.out.println("Gracias por jugar. ¡Hasta luego!");
+                    break;
             }
 
-            System.out.println("Reintegrament " + combinacioGuanyadora[combinacioGuanyadora.length - 1]);
-        }
-
-        premi = comprovarEncerts(aposta, combinacioGuanyadora);
-        System.out.println("El teu premi és: "+premi+" €");
+        } while (opcion != 4);
     }
 
     /**
-     * //TODO: Completasr
+     * //TODO: Completar
      * @return //TODO: Completar
      * @since 1.0
      */
@@ -83,7 +98,6 @@ public class CognomNom_Primitiva {
         return combinacion;
     }
 
-    //Método para verificar los repetidos
     private static boolean estaRepetido(int[] array, int numero, int longitud) {
         for (int i = 0; i < longitud; i++) {
             if (array[i] == numero) {
