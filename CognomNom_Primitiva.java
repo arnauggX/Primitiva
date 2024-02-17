@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Random;
 
 /**
  * Programa de simulació de La Primitiva
@@ -25,7 +26,7 @@ public class CognomNom_Primitiva {
         System.out.println("***** PRIMITIVA ******");
 
         int[] aposta = introduirAposta();
-        int[] combinacioGuanyadora = calcularCombinacioGuanyadora(new int[7]);
+        int[] combinacioGuanyadora = calcularCombinacioGuanyadora();
         int premi;
 
         if (combinacioGuanyadora != null) {
@@ -61,27 +62,38 @@ public class CognomNom_Primitiva {
      * @return //TODO: Completar
      * @since 1.0
      */
-    private static int[] calcularCombinacioGuanyadora(int array []){
-        int[] combinacio1 = null;
-        int[] combinacio2 = null;
 
-        for(int i=0;i<array.length;i++){
-            boolean encontrado = false;
-            int ale=(int)(Math.random()*49)+1;
-            for (int j=0;j<i ;j++){
-                if(array[j]==ale){
-                    encontrado=true;
-                }
-            }
-            if(!encontrado){
-                array[i]=ale;
-            }else{
-                i--;
-            }
+    private static int[] calcularCombinacioGuanyadora(){
+        int[] combinacion = new int[7];
+        Random random = new Random();
+
+        // Generar 6 números aleatorios para la combinación principal
+        for (int i = 0; i < 6; i++) {
+            int numeroAleatorio;
+            do {
+                numeroAleatorio = random.nextInt(49) + 1;
+            } while (estaRepetido(combinacion, numeroAleatorio, i));
+
+            combinacion[i] = numeroAleatorio;
         }
 
-        return array;
+        // Generar el número del reintegro (entre 0 y 9)
+        combinacion[6] = random.nextInt(10);
+
+        return combinacion;
     }
+
+    //Método para verificar los repetidos
+    private static boolean estaRepetido(int[] array, int numero, int longitud) {
+        for (int i = 0; i < longitud; i++) {
+            if (array[i] == numero) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
     /**
      * //TODO: Completar
