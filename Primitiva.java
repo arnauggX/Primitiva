@@ -8,7 +8,7 @@ import java.util.Random;
  * @date //TODO: data
  */
 //TODO: Fer refractor per canviar el nom de la classe
-public class CognomNom_Primitiva {
+public class Primitiva {
     /**
      * Mètode main executable
      * @param args
