@@ -101,6 +101,7 @@ public class Primitiva {
 
 
 
+
     /**
      * //TODO: Completar
      * @return //TODO: Completar
