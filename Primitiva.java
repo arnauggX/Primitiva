@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.Random;
 
+
 /**
  * Programa de simulació de La Primitiva
  * @auhor //TODO: Nom Alumne
@@ -125,8 +126,10 @@ public class Primitiva {
         //TODO: Fer el codi del mètode
 
 
+
         //Comprobar reintegrament
         //TODO: Fer el codi del mètode
+
 
         //Calcular premi
         //TODO: Fer el codi del mètode
@@ -171,6 +174,7 @@ public class Primitiva {
      * @return
      * @since 1.0
      */
+
     private static float llegirFloat(String missatge){
         Scanner llegir = new Scanner(System.in);
         float x = 0;
