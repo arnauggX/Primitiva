@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.util.Random;
 
 
+
 /**
  * Programa de simulació de La Primitiva
  * @auhor //TODO: Nom Alumne
@@ -10,6 +11,7 @@ import java.util.Random;
  */
 //TODO: Fer refractor per canviar el nom de la classe
 public class Primitiva {
+
     /**
      * Mètode main executable
      * @param args
@@ -18,6 +20,7 @@ public class Primitiva {
     public static void main(String[] args) {
         menuPrincipal();
     }
+
 
     /**
      * //TODO: Completar
@@ -58,6 +61,7 @@ public class Primitiva {
 
         } while (opcion != 4);
     }
+
 
     /**
      * //TODO: Completar
