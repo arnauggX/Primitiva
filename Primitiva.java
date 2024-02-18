@@ -87,7 +87,7 @@ public class Primitiva {
         int[] combinacion = new int[7];
         Random random = new Random();
 
-        // Generar 6 números aleatorios para la combinación principal
+        // Generar 6 números aleatorios entre 1 y 49
         for (int i = 0; i < 6; i++) {
             int numeroAleatorio;
             do {
