@@ -1,4 +1,15 @@
+/**
+ * Practica: Primitiva
+ *
+ * Alumnos: Gil Gil, Arnau - Cerro Aragon Constanza
+ *
+ * Enlace de github: https://github.com/arnauggX/Primitiva.git  (no terminado)
+ *
+ */
+
 import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -8,10 +19,10 @@ import java.util.Scanner;
  * @date //TODO: data
  */
 //TODO: Fer refractor per canviar el nom de la classe
-public class Primitiva {
+public class GilGilArnau_CerroAragonConstanza {
 
     public static Scanner scanner = new Scanner(System.in);
-    private static AbstractList<Object> numerosUsados;
+    private static ArrayList<Integer> numerosUsados = new ArrayList<>(); // Inicialización de array para numeros usados
 
     /**
      * Mètode main executable
@@ -22,31 +33,46 @@ public class Primitiva {
         menuPrincipal();
     }
 
+
     /**
      * //TODO: Completar
      * @since 1.0
      */
-
     //Cambio
     private static void menuPrincipal(){
-        System.out.println("***** PRIMITIVA ******");
+        Scanner scanner = new Scanner(System.in);
+        int opcion;
 
-        int[] aposta = introduirAposta();
-        int[] combinacioGuanyadora = calcularCombinacioGuanyadora();
-        int premi;
+        do {
+            System.out.println("***** Loteria ******");
+            System.out.println("1. Hacer apuesta");
+            System.out.println("2. Girar el bombo");
+            System.out.println("3. Juego nuevo");
+            System.out.println("4. Salir");
 
-        if (combinacioGuanyadora != null) {
-            System.out.println("La combinació ganadora és: ");
+            opcion = llegirInt("Seleccione una opción: ", 1, 4);
 
-            for (int i = 0; i < combinacioGuanyadora.length - 1; i++) {
-                System.out.print(combinacioGuanyadora[i] + " ");
+            switch (opcion) {
+                case 1:
+                    introduirAposta();
+                    break;
+                case 2:
+                    int[] combinacion = calcularCombinacioGuanyadora();
+                    System.out.println("La combinación ganadora es: ");
+                    for (int i = 0; i < combinacion.length - 1; i++) {
+                        System.out.print(combinacion[i] + " ");
+                    }
+                    System.out.println("Reintegrament " + combinacion[combinacion.length - 1]);
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+                    System.out.println("Gracias por jugar. ¡Hasta luego!");
+                    break;
             }
 
-            System.out.println("Reintegrament " + combinacioGuanyadora[combinacioGuanyadora.length - 1]);
-        }
-
-        premi = comprovarEncerts(aposta, combinacioGuanyadora);
-        System.out.println("El teu premi és: "+premi+" €");
+        } while (opcion != 4);
     }
 
     /**
@@ -100,43 +126,60 @@ public class Primitiva {
     }
 
 
-
-
     /**
      * //TODO: Completar
      * @return //TODO: Completar
      * @since 1.0
      */
     private static int[] calcularCombinacioGuanyadora(){
-        int[] combinacio = null;
+        int[] combinacion = new int[7];
+        Random random = new Random();
 
-        //TODO: Fer el codi del mètode
+        // Generar 6 números aleatorios entre 1 y 49
+        for (int i = 0; i < 6; i++) {
+            int numeroAleatorio;
+            do {
+                numeroAleatorio = random.nextInt(49) + 1;
+            } while (estaRepetido(combinacion, numeroAleatorio, i));
 
-        return combinacio;
+            combinacion[i] = numeroAleatorio;
+        }
+
+        // Generar el número del reintegro (entre 0 y 9)
+        combinacion[6] = random.nextInt(10);
+
+        return combinacion;
+    }
+
+    private static boolean estaRepetido(int[] array, int numero, int longitud) {
+        for (int i = 0; i < longitud; i++) {
+            if (array[i] == numero) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
-     * //TODO: Completar
-     * @param aposta //TODO: Completar
-     * @param combinacioGuanyadora //TODO: Completar
-     * @return //TODO: Completar
+     * //TODO: Obtener los aciertos
+     * @param aposta Arrays de nuemeros elegidos por usuario
+     * @param combinacioGuanyadora Array generado con numeros ganadores
+     * @return //devulve los aciertos
      * @since 1.0
      */
-    private static int comprovarEncerts(int[] aposta, int[] combinacioGuanyadora){
-        int premi = 0;
-        int encerts = 0;
-        boolean reintregrament = false;
+    private static int comprobarAciertos(int[] aposta, int[] combinacioGuanyadora) {
+        int premio = 0;
+        int aciertos = 0;
 
-        //Comprobar encerts a la combinació
-        //TODO: Fer el codi del mètode
-
-        //Comprobar reintegrament
-        //TODO: Fer el codi del mètode
-
-        //Calcular premi
-        //TODO: Fer el codi del mètode
-
-        return premi;
+        for (int i = 0; i < 6; i++) {
+            if (aposta[i] == combinacioGuanyadora[i]) {
+                aciertos++;
+            }
+        }
+        if (aposta[6] == combinacioGuanyadora[6]) {
+            premio +=6;
+        }
+        return premio;
     }
 
     /**
